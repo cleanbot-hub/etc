@@ -19,12 +19,7 @@
     <div id="iframeContainer"></div>
 
     <script>
-        // 페이지 로드 시 저장된 영상 로드
-        window.onload = function() {
-            loadSavedIframes();
-        };
-
-        function addIframes() {
+       function addIframes() {
             var idInput = document.getElementById("idInput").value;
             if (idInput) {
                 var ids = idInput.split(",");
@@ -36,41 +31,11 @@
                         iframe.setAttribute("frameborder", "0");
                         iframe.setAttribute("allowfullscreen", "");
                         document.getElementById("iframeContainer").appendChild(iframe);
-
-                        // 저장하기
-                        saveToLocalStorage(trimmedId);
                     }
                 });
             } else {
                 alert("아이디를 입력하세요!");
             }
-        }
-
-        function saveToLocalStorage(id) {
-            // 로컬 스토리지에 저장
-            var savedIds = localStorage.getItem("savedIds");
-            savedIds = savedIds ? savedIds.split(",") : [];
-            savedIds.push(id);
-            localStorage.setItem("savedIds", savedIds.join(","));
-        }
-
-        function loadSavedIframes() {
-            // 저장된 영상들 불러오기
-            var savedIds = localStorage.getItem("savedIds");
-            if (savedIds) {
-                savedIds = savedIds.split(",");
-                savedIds.forEach(function(id) {
-                    addIframeFromId(id.trim());
-                });
-            }
-        }
-
-        function addIframeFromId(id) {
-            var iframe = document.createElement("iframe");
-            iframe.src = "https://mul.live/a:" + id;
-            iframe.setAttribute("frameborder", "0");
-            iframe.setAttribute("allowfullscreen", "");
-            document.getElementById("iframeContainer").appendChild(iframe);
         }
     </script>
 </body>
