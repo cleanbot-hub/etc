@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아프리카TV 멀티뷰</title>
+    <style>
+        #af{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="af">
+        <input type="text" id="idInput" placeholder="아프리카 TV 뒷 주소를 입력 해주세요">
+        <button onclick="addIframes()">추가</button>
+    </div>
+    <div id="iframeContainer"></div>
+
+    <script>
+       function addIframes() {
+            var idInput = document.getElementById("idInput").value;
+            if (idInput) {
+                var ids = idInput.split(",");
+                ids.forEach(function(id) {
+                    var trimmedId = id.trim();
+                    if (trimmedId) {
+                        var iframe = document.createElement("iframe");
+                        iframe.src = "https://mul.live/a:" + trimmedId;
+                        iframe.setAttribute("frameborder", "0");
+                        iframe.setAttribute("allowfullscreen", "");
+                        document.getElementById("iframeContainer").appendChild(iframe);
+                    }
+                });
+            } else {
+                alert("아이디를 입력하세요!");
+            }
+        }
+    </script>
+</body>
+</html>
